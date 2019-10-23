@@ -2,7 +2,6 @@ import { RandomBoolean } from '../index';
 
 function frequencyTest(){
   const keys: boolean[] = [false,true]
-
   let expectedFrequency : number = 10000;
   let totalExperiments : number = expectedFrequency*2;
   let maxError : number = expectedFrequency/10
