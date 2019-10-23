@@ -1,13 +1,14 @@
-import { RandomBoolean } from '../index';
+import { genInteger } from '../index';
 
 function frequencyTest(){
-  const keys: boolean[] = [false,true]
+  let min : number = 11;
+  let max : number = 20;
   let expectedFrequency : number = 10000;
-  let totalExperiments : number = expectedFrequency*2;
+  let totalExperiments : number = expectedFrequency*(max-min+1);
   let maxError : number = expectedFrequency/10
   var frequency = new Map();
   for( let i: number = 0 ; i < totalExperiments; i++ ){
-    let randomNumber = RandomBoolean()
+    let randomNumber = genInteger(min,max);
     if( frequency.has(randomNumber) ) {
       frequency.set( randomNumber, frequency.get(randomNumber) + 1 )
     } else {
@@ -15,12 +16,12 @@ function frequencyTest(){
     }
   }
   var debugMessage: string = "";
-  for( let key of keys ){
-    let value : number = frequency.get(key);
+  for( let n: number = min; n <= max; n ++ ){
+    let value : number = frequency.get(n);
     expect(value).toBeLessThanOrEqual(expectedFrequency + maxError)
     expect(value).toBeGreaterThanOrEqual(expectedFrequency - maxError)
-    debugMessage += `Frecuency of ${key} is ${value} expected: ${expectedFrequency} difference: ${expectedFrequency-value}\n`;    
+    debugMessage += `Frecuency of ${n} is ${value} expected: ${expectedFrequency} difference: ${expectedFrequency-value}\n`;    
   }
   console.log(debugMessage)
 }
-test('RandomBoolean generator', frequencyTest);
+test('genInteger generator', frequencyTest);
