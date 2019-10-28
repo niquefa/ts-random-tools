@@ -3,7 +3,7 @@ import { permute, getFactorial } from '../index';
 function simpleDebugTest() {
   const LOCAL_DEBUG: boolean = true;
   let minValue: number = 0;
-  let maxValue: number = 7;
+  let maxValue: number = 4;
   let keys = new Array();
   for (let i: number = minValue; i <= maxValue; i++) keys.push(i);
   let debugMessage: string = '';
@@ -22,7 +22,7 @@ function simpleDebugTest() {
   }
   let endTime: number = performance.now();
   expect(factorialCheck).toBe(correctFactorial);
-  if (LOCAL_DEBUG) {qcqxxx
+  if (LOCAL_DEBUG) {
     console.log(debugMessage);
     console.log(`The generation of all the ${correctFactorial} permutation took ${endTime - startTime} milliseconds.`);
   }
